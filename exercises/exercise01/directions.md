@@ -19,7 +19,7 @@
 
 
 ## Welcome
-We are glad to see you here at Day 2 of JavaScript Fundamentals. Today is a project day so we will be pairing up on the pairing machines. 
+We are glad to see you here at ForwardJS! This tutorial is for the first part of class.
 
 #### What's the format of today's class?
 Today we will be doing a quick review of what we covered in the previous class and then jumping into a project that directly applies what we learned. 
