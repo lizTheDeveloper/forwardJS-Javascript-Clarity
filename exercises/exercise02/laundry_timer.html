@@ -15,10 +15,17 @@
   </head>
   <body>
     <h1>Laundry Timers</h1>
+    <div style="margin:10px 10px 10px 10px; padding:10px 10px 10px 10px">
+    <p>Oh no, we've got BUGS in our laundry! Good thing we have a debugger- otherwise we'd never get our clothes clean. Use the debugger, together with the console, to figure out what problem with Scope is causing these bugs. Couldn't hurt to make this bug tracker a little prettier too, check out the CSS while you're at it.</p>
+    <p>Bugs in Laundry Timer:</p>
+    <input type="checkbox">Sometimes seconds are not taken away from every item<br>
+    <input type="checkbox">Dryer does not add to table, but washer does<br>
+    <p>TODO in Laundry Timer</p>
+    <input type="checkbox">Seconds don't stop at 00, and minuites are never decremented.
     <div class="form">
     Washer Time: <input type="number" id="washer_time"> <button id="new_washer">New Washer Load</button>
     Dryer Time: <input type="number" id="dryer_time"> <button id="new_dryer">New Dryer Load</button>
-    
+    </div>
     <table class="table" id="table">
         <tbody><tr>
             <th>Load Type</th>
@@ -51,9 +58,10 @@
     //listen to button
     var washer = document.getElementById('new_washer');
     var dryer = document.getElementById('new_dryer');
-    var table = document.getElementsByTagName('tbody')[0];
+    
 
     washer.addEventListener('click', function(){
+        var table = document.getElementsByTagName('tbody')[0];
         var row = document.createElement('tr');
         var type = document.createElement('td');
         var timer = document.createElement('td');
@@ -98,17 +106,11 @@
     //decrement counters
     function decrementCounters(){
         var counterTDs = document.getElementsByClassName('timer');
-        for (var i=0;i<counterTDs.length;i++) {
+        for (i=0;i<counterTDs.length;i++) {
             // Get the time
             var minuites = counterTDs[i].innerHTML.split(":")[0] || "00";
             var seconds = counterTDs[i].innerHTML.split(":")[1] || "00";
-            //check to decrement minuites 
-            if (seconds == "00") {
-                minuites--;
-                seconds = 59;
-            } else {
-                seconds--;
-            }
+            //TODO: check to decrement minuites 
             if ((seconds + "").length < 2) {
                 seconds = "0" + seconds + "";
             }
@@ -118,7 +120,7 @@
 
     function alertTimer(){
         var counterTDs = document.getElementsByClassName('timer');
-        for (var i=0;i<counterTDs.length;i++) {
+        for (i=0;i<counterTDs.length;i++) {
             // Get the time
             var minuites = counterTDs[i].innerHTML.split(":")[0] || "00";
             var seconds = counterTDs[i].innerHTML.split(":")[1] || "00";
