@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)file:///Users/icyfenix/Projects/Hackbright/Curriculum/Javascript2/laundry.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1>Laundry Timers</h1>
+    <div class="form">
+    Washer Time: <input type="number" id="washer_time"> <button id="new_washer">New Washer Load</button>
+    Dryer Time: <input type="number" id="dryer_time"> <button id="new_dryer">New Dryer Load</button>
+    
+    <table class="table" id="table">
+        <tbody><tr>
+            <th>Load Type</th>
+            <th>Time Remaining</th>
+        </tr>
+        <tr>
+            <td class="type">Washing Machine</td>
+            <td class="timer">6:58</td>
+        </tr>
+        <tr>
+            <td class="type">Washing Machine</td>
+            <td class="timer">10:20</td>
+        </tr>
+        <tr>
+            <td class="type">Dryer</td>
+            <td class="timer">52:31</td>
+        </tr>
+        <tr>
+            <td class="type">Dryer</td>
+            <td class="">0:00</td>
+        </tr>
+    </tbody></table>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./laundry_timer_files/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./laundry_timer_files/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    //Your JS goes here
+
+    //listen to button
+    var washer = document.getElementById('new_washer');
+    var dryer = document.getElementById('new_dryer');
+    var table = document.getElementsByTagName('tbody')[0];
+
+    washer.addEventListener('click', function(){
+        var row = document.createElement('tr');
+        var type = document.createElement('td');
+        var timer = document.createElement('td');
+
+
+        //setup type
+        type.className="type";
+        type.innerHTML="Washing Machine"
+
+        //setup timer initial value
+        timer.className="timer";
+        timer.innerHTML = document.getElementById('washer_time').value + ":00"
+
+        row.appendChild(type);
+        row.appendChild(timer);
+
+        table.appendChild(row);
+
+    });
+
+    dryer.addEventListener('click', function(){
+        var row = document.createElement('tr');
+        var type = document.createElement('td');
+        var timer = document.createElement('td');
+
+
+        //setup type
+        type.className="type";
+        type.innerHTML="Dryer"
+
+        //setup timer initial value
+        timer.className="timer";
+        timer.innerHTML = document.getElementById('dryer_time').value + ":00"
+
+        row.appendChild(type);
+        row.appendChild(timer);
+
+        table.appendChild(row);
+
+    });
+
+    //decrement counters
+    function decrementCounters(){
+        var counterTDs = document.getElementsByClassName('timer');
+        for (var i=0;i<counterTDs.length;i++) {
+            // Get the time
+            var minuites = counterTDs[i].innerHTML.split(":")[0] || "00";
+            var seconds = counterTDs[i].innerHTML.split(":")[1] || "00";
+            //check to decrement minuites 
+            if (seconds == "00") {
+                minuites--;
+                seconds = 59;
+            } else {
+                seconds--;
+            }
+            if ((seconds + "").length < 2) {
+                seconds = "0" + seconds + "";
+            }
+            counterTDs[i].innerHTML = minuites + ":" + seconds;
+        }
+    }
+
+    function alertTimer(){
+        var counterTDs = document.getElementsByClassName('timer');
+        for (var i=0;i<counterTDs.length;i++) {
+            // Get the time
+            var minuites = counterTDs[i].innerHTML.split(":")[0] || "00";
+            var seconds = counterTDs[i].innerHTML.split(":")[1] || "00";
+            if (minuites == "0" && seconds == "00") {
+                counterTDs[i].className = "";
+            }
+        }
+    }
+
+
+    //main event loop
+    setInterval(function(){
+        decrementCounters();
+        alertTimer();
+    },1000)
+
+    </script>
+  
+
+</div></body></html>
