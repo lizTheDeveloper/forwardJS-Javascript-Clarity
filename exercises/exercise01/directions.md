@@ -1,9 +1,3 @@
-####TODOS
-1. Create links for outline (part1, part2, part3) so that students don't have to scroll around to find the steps.
-2. proof-read and customize for forward js
-3. refactor relationships array and object exercises so that they create new instances of arrays and objects, rather than using the same object for all the animals
-5. create a form for students to submit their email
-
 # eFarmony ForwardJS Project Outline
 
 - Welcome!
